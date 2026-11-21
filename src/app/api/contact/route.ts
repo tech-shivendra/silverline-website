@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { contactFormSchema } from '@/lib/validations/contact';
 import { checkRateLimit } from '@/lib/rate-limit';
 import { supabaseAdmin, isSupabaseAdminConfigured } from '@/lib/supabase/server';
+import { supabaseClient, isSupabaseConfigured } from '@/lib/supabase/client';
 import {
   sendInternalInquiryNotification,
   sendVisitorAcknowledgement
@@ -70,9 +71,15 @@ export async function POST(req: NextRequest): Promise<NextResponse<ApiResponse>>
     let inquiryId: string | null = null;
 
     // 4. Supabase Database Insertion
-    if (isSupabaseAdminConfigured()) {
+    const clientToUse = isSupabaseAdminConfigured()
+      ? supabaseAdmin
+      : isSupabaseConfigured()
+      ? supabaseClient
+      : null;
+
+    if (clientToUse) {
       try {
-        const { data: inserted, error: dbError } = await supabaseAdmin
+        const { data: inserted, error: dbError } = await clientToUse
           .from('inquiries')
           .insert({
             reference_code: referenceCode,
