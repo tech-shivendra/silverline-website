@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-space-grotesk: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    --bg-primary: #08090B;
+    --bg-secondary: #101216;
+    --surface: #171A20;
+    --surface-elevated: #20242B;
+    --silver: #C6C9CE;
+    --silver-light: #E1E3E6;
+    --white: #F5F5F5;
+    --muted: #858B94;
+    --accent-blue: #8DA8FF;
+    --border: #282C33;
+    --status-success: #8EC7A5;
+    --status-error: #E58B8B;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    color-scheme: dark;
+    background-color: #08090B;
+    color: #F5F5F5;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #08090B;
+    color: #F5F5F5;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: #20242B;
+    color: #C6C9CE;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #282C33;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #383E48;
+}
+
+/* Metallic Silver Gradient Utilities */
+.silver-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #C6C9CE 50%, #858B94 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.silver-border-glow {
+  position: relative;
+}
+
+.silver-border-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(198, 201, 206, 0.3) 0%, rgba(40, 44, 51, 0.1) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Subtle grid background pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(40, 44, 51, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(40, 44, 51, 0.3) 1px, transparent 1px);
+}

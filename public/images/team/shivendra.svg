@@ -1,0 +1,13 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="400" fill="#101216"/>
+    <defs>
+      <linearGradient id="avatarGrad-SP" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#20242B"/>
+        <stop offset="100%" stopColor="#171A20"/>
+      </linearGradient>
+    </defs>
+    <circle cx="200" cy="200" r="160" fill="url(#avatarGrad-SP)" stroke="#282C33" stroke-width="2"/>
+    <circle cx="200" cy="200" r="150" stroke="#8DA8FF" stroke-opacity="0.2" stroke-dasharray="6 6"/>
+    <text x="200" y="215" font-family="monospace" font-weight="700" font-size="54" fill="#C6C9CE" text-anchor="middle">SP</text>
+    <text x="200" y="320" font-family="sans-serif" font-size="14" fill="#858B94" text-anchor="middle">Shivendra Pratap Singh</text>
+  </svg>

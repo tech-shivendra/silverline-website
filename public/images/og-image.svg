@@ -1,0 +1,28 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#08090B"/>
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#171A20" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="silverLineGrad" x1="100" y1="315" x2="1100" y2="315" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#282C33" stopOpacity="0"/>
+      <stop offset="25%" stopColor="#C6C9CE" stopOpacity="0.8"/>
+      <stop offset="50%" stopColor="#FFFFFF"/>
+      <stop offset="75%" stopColor="#8DA8FF" stopOpacity="0.9"/>
+      <stop offset="100%" stopColor="#282C33" stopOpacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="600" cy="315" r="300" fill="#8DA8FF" fill-opacity="0.04" filter="blur(80px)"/>
+  
+  <!-- Flowing Silver Line -->
+  <path d="M 100 380 C 350 450 450 180 600 240 C 750 300 850 150 1100 220" stroke="url(#silverLineGrad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+  
+  <text x="120" y="240" font-family="sans-serif" font-weight="700" font-size="20" fill="#8DA8FF" letter-spacing="4">INDEPENDENT PRODUCT DEVELOPMENT STUDIO</text>
+  <text x="120" y="320" font-family="sans-serif" font-weight="800" font-size="64" fill="#F5F5F5">SILVERLINE STUDIO</text>
+  <text x="120" y="380" font-family="sans-serif" font-weight="400" font-size="24" fill="#858B94">We don't just build products. We build what comes next.</text>
+  
+  <rect x="120" y="440" width="220" height="48" rx="8" fill="#171A20" stroke="#282C33"/>
+  <text x="144" y="470" font-family="monospace" font-size="14" fill="#C6C9CE">silverline.studio</text>
+</svg>
