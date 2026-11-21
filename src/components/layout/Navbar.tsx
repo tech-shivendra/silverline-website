@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { Logo } from '@/components/ui/Logo';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { siteConfig } from '@/data/siteConfig';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
@@ -85,8 +86,9 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Action CTA */}
+          {/* Action CTA & Theme Toggle */}
           <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle variant="minimal" />
             <Button
               href="/contact"
               variant="metallic"
@@ -98,16 +100,19 @@ export const Navbar: React.FC = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-silver hover:text-white hover:bg-surface border border-border"
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          {/* Mobile Menu Trigger & Theme Toggle */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle variant="minimal" />
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-lg text-silver hover:text-white hover:bg-surface border border-border"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </Container>
       </header>
 

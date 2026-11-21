@@ -10,10 +10,17 @@ import { Button } from '@/components/ui/Button';
 import { Tabs } from '@/components/ui/Tabs';
 import { Reveal } from '@/components/animations/Reveal';
 import { projectsData } from '@/data/projects';
+import { Project } from '@/types';
 import { ArrowUpRight } from 'lucide-react';
 
-export const SelectedProjectsSection: React.FC = () => {
+interface SelectedProjectsSectionProps {
+  initialProjects?: Project[];
+}
+
+export const SelectedProjectsSection: React.FC<SelectedProjectsSectionProps> = ({ initialProjects }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
+
+  const allProjects = initialProjects && initialProjects.length > 0 ? initialProjects : projectsData.filter((p) => p.published);
 
   const filterTabs = [
     { id: 'All', label: 'All' },
@@ -24,7 +31,7 @@ export const SelectedProjectsSection: React.FC = () => {
     { id: 'Experimental Concepts', label: 'Experiments' }
   ];
 
-  const filteredProjects = projectsData.filter((p) => {
+  const filteredProjects = allProjects.filter((p) => {
     if (activeCategory === 'All') return true;
     return p.category === activeCategory;
   });

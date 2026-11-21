@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { projectsData } from '@/data/projects';
+import { getPublishedProjects, getPublishedProjectBySlug } from '@/lib/cms/content';
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -32,7 +33,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = projectsData.find((p) => p.slug === slug);
+  const project = await getPublishedProjectBySlug(slug);
   if (!project) return { title: 'Project Not Found' };
 
   return {
@@ -43,14 +44,15 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = projectsData.find((p) => p.slug === slug);
+  const project = await getPublishedProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
+  const allProjects = await getPublishedProjects();
   // Related projects
-  const relatedProjects = projectsData
+  const relatedProjects = allProjects
     .filter((p) => p.id !== project.id && (p.category === project.category || p.featured))
     .slice(0, 2);
 

@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { teamData } from '@/data/team';
+import { getPublishedTeam } from '@/lib/cms/content';
 import { siteConfig } from '@/data/siteConfig';
 import { Github, Linkedin, ShieldCheck, Terminal, HeartHandshake } from 'lucide-react';
 
@@ -15,7 +15,10 @@ export const metadata: Metadata = {
   description: 'The philosophy, engineering collective, and technical capabilities behind SilverLine Studio.'
 };
 
-export default function StudioPage() {
+export const revalidate = 60;
+
+export default async function StudioPage() {
+  const team = await getPublishedTeam();
   return (
     <div className="py-16 md:py-24">
       <Container>
@@ -77,7 +80,7 @@ export default function StudioPage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {teamData.map((member) => (
+            {team.map((member) => (
               <Card key={member.id} className="p-8">
                 <div className="flex flex-col sm:flex-row gap-6 items-start">
                   <div className="relative h-28 w-28 rounded-xl overflow-hidden bg-surface-elevated border border-border shrink-0">

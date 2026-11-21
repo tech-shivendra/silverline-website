@@ -4,6 +4,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/data/siteConfig';
+import { ThemeProvider } from '@/components/theme/ThemeProvider';
 
 export const viewport: Viewport = {
   themeColor: '#08090B',
@@ -78,8 +79,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Anti-theme-flash script runs immediately before paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('silverline-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&m)||(s==='system'&&m)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -88,12 +95,14 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background-primary text-white font-sans antialiased min-h-screen flex flex-col selection:bg-surface-elevated selection:text-silver">
-        <JsonLd />
-        <Navbar />
-        <main className="flex-1 pt-20">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <JsonLd />
+          <Navbar />
+          <main className="flex-1 pt-20">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

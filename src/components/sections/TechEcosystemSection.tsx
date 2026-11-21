@@ -7,10 +7,17 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Tabs } from '@/components/ui/Tabs';
 import { Reveal } from '@/components/animations/Reveal';
 import { technologiesData } from '@/data/technologies';
+import { TechnologyItem } from '@/types';
 import { ArrowUpRight } from 'lucide-react';
 
-export const TechEcosystemSection: React.FC = () => {
+interface TechEcosystemSectionProps {
+  initialTechnologies?: TechnologyItem[];
+}
+
+export const TechEcosystemSection: React.FC<TechEcosystemSectionProps> = ({ initialTechnologies }) => {
   const [activeCategory, setActiveCategory] = useState<string>('Frontend');
+
+  const technologies = initialTechnologies && initialTechnologies.length > 0 ? initialTechnologies : technologiesData;
 
   const categories = [
     { id: 'Frontend', label: 'Frontend' },
@@ -20,7 +27,7 @@ export const TechEcosystemSection: React.FC = () => {
     { id: 'Tools', label: 'Tools' }
   ];
 
-  const filteredTech = technologiesData.filter(
+  const filteredTech = technologies.filter(
     (t) => t.category === activeCategory
   );
 

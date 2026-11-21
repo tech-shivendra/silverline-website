@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { servicesData } from '@/data/services';
 import { projectsData } from '@/data/projects';
+import { getPublishedServices, getPublishedProjects } from '@/lib/cms/content';
 import {
   Compass,
   Palette,
@@ -38,7 +39,10 @@ const iconMap: Record<string, React.ElementType> = {
   Activity
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getPublishedServices();
+  const allProjects = await getPublishedProjects();
+
   return (
     <div className="py-16 md:py-24">
       <Container>
@@ -49,10 +53,10 @@ export default function ServicesPage() {
         />
 
         <div className="space-y-12 mb-20">
-          {servicesData.map((service, index) => {
+          {services.map((service, index) => {
             const Icon = iconMap[service.icon] || Globe;
             // Related project sample
-            const relatedProject = projectsData.find(p => p.tech_stack.some(t => service.title.toLowerCase().includes(t.toLowerCase())) || p.featured);
+            const relatedProject = allProjects.find(p => p.tech_stack.some(t => service.title.toLowerCase().includes(t.toLowerCase())) || p.featured);
 
             return (
               <div

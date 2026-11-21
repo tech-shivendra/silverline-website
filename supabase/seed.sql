@@ -234,3 +234,62 @@ VALUES
     true
 )
 ON CONFLICT DO NOTHING;
+
+-- Seed Technologies
+INSERT INTO public.technologies (name, category, role, icon, associated_projects, display_order, published)
+VALUES
+('React', 'Frontend', 'Core declarative UI library powering reactive component state and interactive client trees.', 'react', ARRAY['aether-os', 'nexus-core', 'kuro-ai'], 1, true),
+('Next.js', 'Frontend', 'Production framework delivering React Server Components, hybrid SSR/SSG rendering, and edge runtime routing.', 'nextjs', ARRAY['aether-os', 'kuro-ai', 'synapse-graph'], 2, true),
+('TypeScript', 'Frontend', 'Strict compile-time type safety preventing runtime defects and enforcing deterministic APIs across all modules.', 'typescript', ARRAY['aether-os', 'nexus-core', 'kuro-ai', 'vanguard-mobile'], 3, true),
+('JavaScript', 'Frontend', 'High-performance ECMAScript runtime utilized for browser scripting and low-level browser APIs.', 'javascript', ARRAY['synapse-graph'], 4, true),
+('Tailwind CSS', 'Frontend', 'Utility-first styling system enabling strict design token adherence, custom theme variables, and zero runtime overhead.', 'tailwind', ARRAY['aether-os', 'kuro-ai', 'synapse-graph'], 5, true),
+('Node.js', 'Backend', 'Asynchronous event-driven JavaScript/TypeScript engine powering high-throughput backend services and web workers.', 'nodejs', ARRAY['nexus-core', 'aether-os'], 6, true),
+('Express', 'Backend', 'Minimalist web framework utilized for crafting robust HTTP REST endpoints and custom middleware stacks.', 'express', ARRAY['nexus-core'], 7, true),
+('Python', 'Backend', 'Primary language for data science, algorithmic financial modeling, and multi-agent LLM pipelines.', 'python', ARRAY['nexus-core', 'kuro-ai'], 8, true),
+('REST APIs', 'Backend', 'Contract-first API architecture designed with OpenAPI standards, strict serialization, and versioning.', 'api', ARRAY['nexus-core', 'vanguard-mobile', 'kuro-ai'], 9, true),
+('PostgreSQL', 'Database and Infrastructure', 'ACID-compliant relational database providing rock-solid transactional safety, JSONB indexing, and advanced constraints.', 'postgresql', ARRAY['nexus-core', 'kuro-ai', 'aether-os'], 10, true),
+('Supabase', 'Database and Infrastructure', 'Integrated platform providing PostgreSQL, Row Level Security, instant realtime subscriptions, and managed authentication.', 'supabase', ARRAY['aether-os', 'vanguard-mobile'], 11, true),
+('Firebase', 'Database and Infrastructure', 'Cloud messaging, crash reporting, and fast prototyping infrastructure for distributed mobile clients.', 'firebase', ARRAY['vanguard-mobile'], 12, true),
+('Docker', 'Database and Infrastructure', 'Containerization standard guaranteeing environment parity across local development, CI/CD, and production clusters.', 'docker', ARRAY['nexus-core', 'kuro-ai'], 13, true),
+('React Native', 'Mobile', 'Cross-platform native framework compiling unified TypeScript logic into native iOS and Android view hierarchies.', 'reactnative', ARRAY['vanguard-mobile'], 14, true),
+('Expo', 'Mobile', 'Enterprise toolchain streamlining native builds, OTA updates, and native hardware API integrations.', 'expo', ARRAY['vanguard-mobile'], 15, true),
+('GitHub', 'Tools', 'Distributed version control, collaborative code reviews, automated CI/CD GitHub Actions pipelines, and release management.', 'github', ARRAY['aether-os', 'kuro-ai', 'synapse-graph'], 16, true),
+('Figma', 'Tools', 'Collaborative UI/UX design canvas used for design systems, wireframing, high-fidelity prototypes, and component specs.', 'figma', ARRAY['aether-os', 'nexus-core', 'vanguard-mobile'], 17, true),
+('Vercel', 'Tools', 'Global edge platform for lightning-fast frontend deployments, automatic preview branches, and serverless compute.', 'vercel', ARRAY['aether-os', 'kuro-ai'], 18, true),
+('Postman', 'Tools', 'API testing, automated regression suites, documentation generation, and endpoint mock servers.', 'postman', ARRAY['nexus-core', 'vanguard-mobile'], 19, true)
+ON CONFLICT DO NOTHING;
+
+-- Seed FAQs
+INSERT INTO public.faqs (question, answer, category, display_order, published)
+VALUES
+('What does SilverLine Studio build?', 'SilverLine Studio designs, engineers, and launches premium digital products. We specialize in bespoke web applications, mobile apps, SaaS platforms, AI-powered automation workflows, and high-performance Minimum Viable Products (MVPs).', 'General', 1, true),
+('Can you develop an idea from scratch?', 'Yes. We frequently partner with founders and product leaders at the concept stage. We assist in market feasibility, product architecture, wireframing, high-fidelity UI/UX design, and end-to-end engineering up to production launch.', 'Process', 2, true),
+('Do you work with startups?', 'Absolutely. Startups are our primary partners. We understand speed-to-market, lean iterations, and investor expectations, designing software that can scale gracefully as your user base expands.', 'Engagements', 3, true),
+('Can you develop an MVP?', 'Yes. Our Rapid MVP program engineers production-ready products in 4 to 8 weeks. Unlike disposable prototypes, our MVPs are built on robust architectural foundations (Next.js, TypeScript, PostgreSQL) so you can build on them without costly rewrites.', 'Services', 4, true),
+('What technologies do you use?', 'We operate primarily on modern JavaScript/TypeScript ecosystems: Next.js, React, React Native, Node.js, Python, PostgreSQL, Supabase, Tailwind CSS, Docker, and Vercel. We select proven, modern tools suited specifically to your project requirements.', 'Tech', 5, true),
+('How do you estimate project costs?', 'We estimate projects based on technical complexity, scope, platform requirements, and third-party integrations. After an initial discovery session or when you share a blueprint from our Product Architect, we provide a transparent, milestone-based proposal.', 'Pricing', 6, true),
+('Do you offer ongoing support?', 'Yes. Following deployment, we provide ongoing maintenance, cloud infrastructure monitoring, security patch updates, and feature iteration sprints under dedicated SLA agreements.', 'Maintenance', 7, true),
+('How can someone start a project?', 'You can start by configuring your idea in our interactive Product Architect or submitting a project inquiry through our Contact page. We will review your requirements and schedule a technical discovery call within 24–48 hours.', 'General', 8, true)
+ON CONFLICT DO NOTHING;
+
+-- Seed Site Settings
+INSERT INTO public.site_settings (key, value, description)
+VALUES
+('general', '{
+    "heroEyebrow": "INDEPENDENT PRODUCT DEVELOPMENT STUDIO",
+    "heroHeading": "We turn ambitious ideas into extraordinary digital products.",
+    "heroSupportingText": "From the first sketch to the final deployment, we design and engineer digital experiences built to make a difference.",
+    "brandStatement": "We don''t just build products. We build what comes next.",
+    "supportingStatement": "We design, engineer and launch digital experiences that turn ambitious ideas into meaningful products.",
+    "contactEmail": "studio@silverline.design",
+    "githubUrl": "https://github.com/silverlinestudio",
+    "linkedinUrl": "https://linkedin.com/company/silverlinestudio",
+    "twitterUrl": "https://twitter.com/silverlinestudio"
+}'::jsonb, 'Core brand copy and contact endpoints'),
+('seo', '{
+    "defaultTitle": "SilverLine Studio | Product Development & Digital Innovation",
+    "titleTemplate": "%s | SilverLine Studio",
+    "defaultDescription": "SilverLine Studio designs and develops modern digital products, web applications, mobile apps and innovative software solutions.",
+    "ogImage": "/images/og-image.svg"
+}'::jsonb, 'Global search engine optimization & OpenGraph settings')
+ON CONFLICT (key) DO NOTHING;

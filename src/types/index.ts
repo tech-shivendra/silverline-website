@@ -144,3 +144,97 @@ export interface ApiResponse<T = unknown> {
   error?: string;
   fieldErrors?: Record<string, string[]>;
 }
+
+// Admin CMS, Role Management & System Types
+export type AdminRole = 'super_admin' | 'admin' | 'editor';
+
+export interface AdminUser {
+  id: string;
+  email: string;
+  name?: string | null;
+  role: AdminRole;
+  avatar_url?: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AdminInvitation {
+  id: string;
+  email: string;
+  role: AdminRole;
+  invited_by?: string | null;
+  token: string;
+  expires_at: string;
+  accepted_at?: string | null;
+  created_at: string;
+}
+
+export interface ActivityLog {
+  id: string;
+  user_id?: string | null;
+  user_email?: string | null;
+  action: string;
+  entity_type: string;
+  entity_id?: string | null;
+  details: Record<string, unknown>;
+  ip_address?: string | null;
+  created_at: string;
+}
+
+export interface SiteSettingsGeneral {
+  heroEyebrow: string;
+  heroHeading: string;
+  heroSupportingText: string;
+  brandStatement: string;
+  supportingStatement: string;
+  contactEmail: string;
+  githubUrl: string;
+  linkedinUrl: string;
+  twitterUrl: string;
+}
+
+export interface SiteSettingsSeo {
+  defaultTitle: string;
+  titleTemplate: string;
+  defaultDescription: string;
+  ogImage: string;
+}
+
+export interface MediaAsset {
+  id: string;
+  name: string;
+  file_path: string;
+  file_url: string;
+  file_size?: number;
+  mime_type?: string;
+  alt_text?: string;
+  created_at: string;
+  created_by?: string | null;
+}
+
+export interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+  display_order: number;
+  published: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface Technology {
+  id: string;
+  name: string;
+  category: 'Frontend' | 'Backend' | 'Database and Infrastructure' | 'Mobile' | 'Tools';
+  role: string;
+  icon: string;
+  associated_projects: string[];
+  display_order: number;
+  published: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export type Theme = 'dark' | 'light' | 'system';

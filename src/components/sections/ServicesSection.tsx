@@ -19,6 +19,8 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
+import { Service } from '@/types';
+
 const iconMap: Record<string, React.ElementType> = {
   Compass,
   Palette,
@@ -30,7 +32,13 @@ const iconMap: Record<string, React.ElementType> = {
   Activity
 };
 
-export const ServicesSection: React.FC = () => {
+interface ServicesSectionProps {
+  initialServices?: Service[];
+}
+
+export const ServicesSection: React.FC<ServicesSectionProps> = ({ initialServices }) => {
+  const services = initialServices && initialServices.length > 0 ? initialServices : servicesData.filter((s) => s.published);
+
   return (
     <section id="services" className="py-24 md:py-32 bg-background-primary relative">
       <Container>
@@ -41,7 +49,7 @@ export const ServicesSection: React.FC = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {servicesData.map((service, index) => {
+          {services.map((service, index) => {
             const IconComponent = iconMap[service.icon] || Globe;
             return (
               <Reveal key={service.id} delay={index * 0.08}>

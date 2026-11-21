@@ -8,6 +8,23 @@
     --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+    /* Light Theme (Crisp Architectural Silver & Slate) */
+    --bg-primary: #F8F9FA;
+    --bg-secondary: #FFFFFF;
+    --surface: #EDF0F4;
+    --surface-elevated: #E2E6EC;
+    --silver: #475467;
+    --silver-light: #1D2939;
+    --white: #0F1115;
+    --muted: #667085;
+    --accent-blue: #3B66F5;
+    --border: #D0D5DD;
+    --status-success: #12B76A;
+    --status-error: #F04438;
+  }
+
+  .dark {
+    /* Dark Futuristic Theme (Original SilverLine PRD) */
     --bg-primary: #08090B;
     --bg-secondary: #101216;
     --surface: #171A20;
@@ -27,25 +44,35 @@
   }
 
   html {
-    color-scheme: dark;
-    background-color: #08090B;
-    color: #F5F5F5;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  body {
+  html.dark {
+    color-scheme: dark;
     background-color: #08090B;
     color: #F5F5F5;
+  }
+
+  html:not(.dark) {
+    color-scheme: light;
+    background-color: #F8F9FA;
+    color: #0F1115;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--white);
     overflow-x: hidden;
     min-height: 100vh;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   ::selection {
-    background: #20242B;
-    color: #C6C9CE;
+    background: var(--surface-elevated);
+    color: var(--silver);
   }
 }
 
@@ -56,20 +83,26 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #08090B;
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #282C33;
+  background: var(--border);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #383E48;
+  background: var(--muted);
 }
 
 /* Metallic Silver Gradient Utilities */
 .silver-gradient-text {
+  background: linear-gradient(135deg, #0F1115 0%, #344054 50%, #667085 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .silver-gradient-text {
   background: linear-gradient(135deg, #FFFFFF 0%, #C6C9CE 50%, #858B94 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -95,6 +128,12 @@
 /* Subtle grid background pattern */
 .bg-grid-pattern {
   background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(40, 44, 51, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(40, 44, 51, 0.15) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
   background-image: 
     linear-gradient(to right, rgba(40, 44, 51, 0.3) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(40, 44, 51, 0.3) 1px, transparent 1px);

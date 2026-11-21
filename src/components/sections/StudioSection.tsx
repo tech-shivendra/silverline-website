@@ -8,9 +8,16 @@ import { Badge } from '@/components/ui/Badge';
 import { Reveal } from '@/components/animations/Reveal';
 import { teamData } from '@/data/team';
 import { siteConfig } from '@/data/siteConfig';
+import { TeamMember } from '@/types';
 import { Github, Linkedin, ShieldCheck } from 'lucide-react';
 
-export const StudioSection: React.FC = () => {
+interface StudioSectionProps {
+  initialTeam?: TeamMember[];
+}
+
+export const StudioSection: React.FC<StudioSectionProps> = ({ initialTeam }) => {
+  const team = initialTeam && initialTeam.length > 0 ? initialTeam : teamData.filter((t) => t.published);
+
   return (
     <section id="studio" className="py-24 md:py-32 bg-background-secondary relative border-t border-border/50">
       <Container>
@@ -39,7 +46,7 @@ export const StudioSection: React.FC = () => {
 
           {/* Team Cards */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {teamData.map((member, index) => (
+            {team.map((member, index) => (
               <Reveal key={member.id} delay={index * 0.15}>
                 <Card className="h-full flex flex-col justify-between">
                   <div>
